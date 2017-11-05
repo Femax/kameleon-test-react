@@ -1,0 +1,29 @@
+.QuoteBlock{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  width: 70%;
+  margin-left: 16px;
+  padding: 16px;
+  margin:50px;
+  text-align: left;
+}
+
+.QuoteBlock .Header{
+  text-align: center;
+}
+
+.QuoteBlock .Counter{
+  margin:16px;
+}
+
+.QuoteBlock .Text{
+  text-align: center;
+}
+
+.QuoteBlock .Footer{
+  text-align: right;
+  margin:16px;
+  padding:16px;
+}
+.block{
+  display: none;
+}
