@@ -20,7 +20,7 @@ input[type=text]:focus {
   padding: 16px;
 }
 button {
-    background-color: #222; /* Green */
+    background-color: #222;
     border: none;
     color: white;
     padding: 15px 32px;

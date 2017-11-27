@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/NavigationBar.css'
+import '../../css/NavigationBar.css'
 class NavigationBar extends Component {
 
    constructor(props) {

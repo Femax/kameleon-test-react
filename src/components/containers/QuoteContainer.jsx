@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Quote from './Quote';
-import '../css/QuoteContainer.css'
+import Quote from '../customviews/Quote';
+import '../../css/QuoteContainer.css'
 import axios from 'axios';
+import {getQuotes} from '../../redux/Store'
+import {connect} from 'react-redux'
+
 
 class QuoteContainer extends Component {
 
@@ -17,15 +20,7 @@ class QuoteContainer extends Component {
     }
 
   componentDidMount = () => {
-    axios.get(`http://localhost:8090/quotes`)
-          .then(res => {
-            console.log(res);
-            const posts = res.data._embedded.quotes.map(obj => obj);
-            console.log(posts);
-            this.setState({ posts })
-            }).catch(error =>{
-                  console.log(error);
-    });
+      getQuotes()
   }
 
   handleClick = (index) => this.setState({ activeIndex: index })
@@ -34,11 +29,12 @@ class QuoteContainer extends Component {
     return (
       <div className="QuoteContainer">
         {
+
           this.state.posts.map( (quote,i)=>{
           return (
                   <Quote
                   text={quote.text} index={i}
-                  isActive={ this.state.activeIndex===i} by="Login"
+                  isActive={ this.state.activeIndex===i}
                   count={quote.count} onClick={ this.handleClick }
                   by={quote.by}
                   />
@@ -49,16 +45,9 @@ class QuoteContainer extends Component {
     );
   }
 }
-//
-// {
-//   this.state.data.map( (quote,i)=>{
-//   return (
-//           <Quote
-//           text={quote.text} index={i}
-//           isActive={ this.state.activeIndex===i} by="Login"
-//           count={quote.count} onClick={ this.handleClick }
-//           by={quote.by}
-//           />
-//       );
-// })}
-export default QuoteContainer;
+
+export default connect(
+  state =>({
+    userStore: state
+  })
+)(QuoteContainer) ;

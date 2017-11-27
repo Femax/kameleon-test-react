@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import QuoteContainer from './components/QuoteContainer';
-import LoginContainer from './components/LoginContainer';
-import Nav from './components/NavigationBar';
+import QuoteContainer from './components/containers/QuoteContainer';
+import NewQuoteContainer from './components/containers/NewQuoteContainer';
+import LoginContainer from './components/containers/LoginContainer';
+import Nav from './components/customviews/NavigationBar';
+import {connect} from 'react-redux'
 import './css/App.css';
 
 class App extends Component {
@@ -14,10 +16,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.props.userStore}
         <header className="App-header">
         <Nav items={this.getNavItems}/>
         </header>
         <div className="Left">
+          <NewQuoteContainer/>
           <QuoteContainer/>
         </div>
         <div className="Right">
@@ -28,4 +32,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  state =>({
+    userStore: state
+  }),
+  dispatch =>({})
+)(App) ;
